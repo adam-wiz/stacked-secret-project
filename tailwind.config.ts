@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				lawyer: {
+					primary: '#1a237e',
+					secondary: '#4CAF50',
+					accent: '#3F51B5',
+					light: '#F5F7FF',
+					dark: '#2C2C2C',
+					gold: '#FFC107',
+					blue: '#2196f3'
 				}
 			},
 			borderRadius: {
@@ -84,11 +94,31 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-subtle': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.85' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'btn-pulse': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.03)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'btn-pulse': 'btn-pulse 3s infinite ease-in-out'
+			},
+			boxShadow: {
+				'smooth': '0 10px 50px -12px rgba(0, 0, 0, 0.1)',
+				'card': '0 7px 30px -10px rgba(150, 170, 180, 0.3)',
+				'button': '0 8px 15px rgba(33, 150, 243, 0.3)'
 			}
 		}
 	},
