@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, MessageSquare, Phone, Star, BadgeCheck, ChevronDown, ThumbsUp, Award, Video, Users } from 'lucide-react';
@@ -22,21 +23,26 @@ const Index = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">Expert criminal defense lawyers ready to protect your rights and future.</p>
         </motion.div>
 
-        {/* Chat Answer Section */}
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          className="mb-8"
+          className="space-y-3 mb-16 relative"
         >
-          <Card className="bg-white shadow-sm border border-gray-100 rounded-xl overflow-hidden">
+          {/* Connecting line element */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-full h-12 w-0.5 bg-gradient-to-b from-lawyer-primary/50 to-transparent z-0"></div>
+          
+          {/* Chat Answer Section */}
+          <Card className="bg-white shadow-md border border-gray-100 rounded-xl overflow-hidden relative z-10">
             <CardContent className="p-8">
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-lawyer-dark">
+                <h2 className="text-2xl font-bold text-lawyer-dark flex items-center gap-2">
+                  <span className="text-lawyer-primary text-3xl">"</span>
                   Do I need to tell my employer about a DUI
+                  <span className="text-lawyer-primary text-3xl">"</span>
                 </h2>
                 
-                <div className="h-px bg-gray-200 w-full my-4"></div>
+                <div className="h-px bg-gradient-to-r from-transparent via-lawyer-primary/30 to-transparent w-full my-4"></div>
                 
                 <div className="space-y-6">
                   <h3 className="text-xl text-gray-700 font-medium flex items-center gap-2">
@@ -84,6 +90,20 @@ const Index = () => {
                 </div>
               </div>
             </CardContent>
+            
+            {/* Transition footer */}
+            <div className="bg-gradient-to-b from-white to-lawyer-light/30 p-4 text-center">
+              <p className="text-lawyer-primary font-medium">For personalized legal advice on your situation, consult with a qualified attorney</p>
+              <div className="flex items-center justify-center mt-2">
+                <motion.div 
+                  animate={{ y: [0, 5, 0] }} 
+                  transition={{ repeat: Infinity, duration: 1.5 }} 
+                  className="text-lawyer-primary"
+                >
+                  <ChevronDown size={24} />
+                </motion.div>
+              </div>
+            </div>
           </Card>
         </motion.div>
 
@@ -93,6 +113,10 @@ const Index = () => {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="law-card bg-white rounded-2xl overflow-hidden p-6 md:p-8 max-w-3xl mx-auto"
         >
+          {/* Recommended Attorney Section */}
+          <div className="p-3 -mx-6 -mt-6 mb-6 bg-lawyer-primary/10 text-lawyer-primary font-medium text-center">
+            <span>Recommended Attorney for DUI Cases in Hamilton County</span>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-6 md:gap-8 items-start">
             {/* Profile Image and Badges Section */}
