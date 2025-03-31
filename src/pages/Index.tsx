@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, MessageSquare, Phone, Star, BadgeCheck, ChevronDown, ThumbsUp, Award, Video, Users } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,12 +22,78 @@ const Index = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">Expert criminal defense lawyers ready to protect your rights and future.</p>
         </motion.div>
 
+        {/* Chat Answer Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="mb-8"
+        >
+          <Card className="bg-white shadow-sm border border-gray-100 rounded-xl overflow-hidden">
+            <CardContent className="p-8">
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-lawyer-dark">
+                  Do I need to tell my employer about a DUI
+                </h2>
+                
+                <div className="h-px bg-gray-200 w-full my-4"></div>
+                
+                <div className="space-y-6">
+                  <h3 className="text-xl text-gray-700 font-medium flex items-center gap-2">
+                    <span className="text-lawyer-primary">#</span> Information About DUIs and Employment
+                  </h3>
+                  
+                  <p className="text-gray-700 text-lg">
+                    Generally speaking, whether you need to disclose a DUI to your employer depends on several factors:
+                  </p>
+                  
+                  <div className="space-y-6 mt-4">
+                    {[
+                      {
+                        number: 1,
+                        title: "Employment contract or handbook",
+                        description: "Some employment agreements specifically require you to report criminal charges or convictions."
+                      },
+                      {
+                        number: 2,
+                        title: "Job requirements",
+                        description: "If you drive as part of your job or have a professional license, a DUI may have direct implications for your work responsibilities."
+                      },
+                      {
+                        number: 3,
+                        title: "Security clearances",
+                        description: "Some positions require background checks or security clearances where disclosure may be mandatory."
+                      },
+                      {
+                        number: 4,
+                        title: "Timing",
+                        description: "Whether this is a recent charge or a past conviction can affect disclosure obligations."
+                      }
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-4 items-start">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-lawyer-light flex items-center justify-center">
+                          <span className="text-lawyer-primary font-bold">{item.number}</span>
+                        </div>
+                        <div className="space-y-1">
+                          <h4 className="text-lg font-semibold text-lawyer-dark">{item.title}:</h4>
+                          <p className="text-gray-700">{item.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="law-card bg-white rounded-2xl overflow-hidden p-6 md:p-8 max-w-3xl mx-auto"
         >
+          
           <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-6 md:gap-8 items-start">
             {/* Profile Image and Badges Section */}
             <div className="flex flex-col items-center md:items-start gap-4">
@@ -115,7 +181,7 @@ const Index = () => {
                 <span>Connect Me Now</span>
               </motion.button>
               
-              {/* Read More Collapsible Section */}
+              
               <Collapsible
                 open={isOpen}
                 onOpenChange={setIsOpen}
