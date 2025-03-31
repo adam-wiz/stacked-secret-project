@@ -1,9 +1,13 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, MessageSquare, Phone, Star, BadgeCheck } from 'lucide-react';
+import { Shield, MessageSquare, Phone, Star, BadgeCheck, ChevronDown, ThumbsUp, Award, Video, Users } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-lawyer-light to-white p-6">
       <div className="max-w-4xl mx-auto">
@@ -110,6 +114,137 @@ const Index = () => {
                 <Phone className="w-5 h-5" />
                 <span>Connect Me Now</span>
               </motion.button>
+              
+              {/* Read More Collapsible Section */}
+              <Collapsible
+                open={isOpen}
+                onOpenChange={setIsOpen}
+                className="mt-4 rounded-xl overflow-hidden border border-gray-100"
+              >
+                <CollapsibleTrigger className="w-full flex items-center justify-center py-3 bg-gray-50 hover:bg-gray-100 transition-colors rounded-t-xl group text-lawyer-primary font-medium">
+                  <span>Read More</span>
+                  <ChevronDown className={`ml-2 h-5 w-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                </CollapsibleTrigger>
+                
+                <CollapsibleContent className="p-4 bg-white">
+                  <Tabs defaultValue="reviews" className="w-full">
+                    <TabsList className="w-full bg-gray-100 p-1 rounded-lg mb-4">
+                      <TabsTrigger value="reviews" className="flex items-center gap-1.5 flex-1">
+                        <ThumbsUp className="w-4 h-4" />
+                        <span>Reviews</span>
+                      </TabsTrigger>
+                      <TabsTrigger value="cases" className="flex items-center gap-1.5 flex-1">
+                        <Award className="w-4 h-4" />
+                        <span>Case Results</span>
+                      </TabsTrigger>
+                      <TabsTrigger value="video" className="flex items-center gap-1.5 flex-1">
+                        <Video className="w-4 h-4" />
+                        <span>Video</span>
+                      </TabsTrigger>
+                    </TabsList>
+                    
+                    {/* Reviews Tab */}
+                    <TabsContent value="reviews" className="space-y-4">
+                      <h4 className="text-lg font-semibold text-lawyer-dark flex items-center gap-2">
+                        <Users className="w-5 h-5 text-lawyer-blue" /> 
+                        <span>Client Reviews</span>
+                      </h4>
+                      
+                      {/* Client Reviews */}
+                      <div className="space-y-4">
+                        {[
+                          {
+                            name: "Michael R.",
+                            date: "July 2023",
+                            rating: 5,
+                            text: "Attorney Wieczorek was amazing throughout my entire case. He kept me informed, fought hard, and got my charges reduced significantly. Forever grateful!"
+                          },
+                          {
+                            name: "Sarah T.",
+                            date: "May 2023",
+                            rating: 5,
+                            text: "I cannot recommend this law firm enough. They turned what could have been a life-altering disaster into a manageable situation and were there for me every step of the way."
+                          },
+                          {
+                            name: "David L.",
+                            date: "March 2023",
+                            rating: 5,
+                            text: "Professional, responsive, and truly cares about their clients. They managed to get my case dismissed and helped me get my life back on track."
+                          }
+                        ].map((review, i) => (
+                          <div key={i} className="bg-gray-50 rounded-lg p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="font-medium">{review.name}</div>
+                              <div className="text-sm text-gray-500">{review.date}</div>
+                            </div>
+                            <div className="flex items-center mb-2">
+                              {[...Array(review.rating)].map((_, j) => (
+                                <Star key={j} className="w-4 h-4 text-amber-400 fill-current" />
+                              ))}
+                            </div>
+                            <p className="text-gray-700 text-sm">{review.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+                    
+                    {/* Case Results Tab */}
+                    <TabsContent value="cases" className="space-y-4">
+                      <h4 className="text-lg font-semibold text-lawyer-dark flex items-center gap-2">
+                        <Award className="w-5 h-5 text-lawyer-gold" /> 
+                        <span>Notable Case Results</span>
+                      </h4>
+                      
+                      <div className="space-y-4">
+                        {[
+                          {
+                            type: "DUI Defense",
+                            result: "Charges Reduced",
+                            description: "Client facing felony DUI charges had case reduced to misdemeanor with minimal penalties."
+                          },
+                          {
+                            type: "Drug Possession",
+                            result: "Case Dismissed",
+                            description: "Successfully argued illegal search and seizure, resulting in complete dismissal of all charges."
+                          },
+                          {
+                            type: "Domestic Violence",
+                            result: "Not Guilty Verdict",
+                            description: "Jury trial resulting in full acquittal after presenting evidence of false accusations."
+                          }
+                        ].map((caseResult, i) => (
+                          <div key={i} className="bg-gray-50 rounded-lg p-4">
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-medium text-lawyer-primary">{caseResult.type}</span>
+                              <span className="badge badge-verified">{caseResult.result}</span>
+                            </div>
+                            <p className="text-gray-700 text-sm">{caseResult.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+                    
+                    {/* Video Tab */}
+                    <TabsContent value="video" className="space-y-4">
+                      <h4 className="text-lg font-semibold text-lawyer-dark flex items-center gap-2">
+                        <Video className="w-5 h-5 text-lawyer-blue" /> 
+                        <span>Introduction Video</span>
+                      </h4>
+                      
+                      <div className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center overflow-hidden">
+                        <div className="absolute inset-0 flex items-center justify-center flex-col space-y-3">
+                          <Video className="w-16 h-16 text-lawyer-primary opacity-70" />
+                          <span className="text-sm text-gray-600 font-medium">Attorney Introduction Video</span>
+                        </div>
+                      </div>
+                      
+                      <p className="text-sm text-gray-600 italic text-center">
+                        Meet Attorney Wieczorek and learn about his approach to criminal defense cases.
+                      </p>
+                    </TabsContent>
+                  </Tabs>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
           </div>
         </motion.div>
