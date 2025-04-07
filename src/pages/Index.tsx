@@ -168,21 +168,33 @@ const Index = () => {
                           At the Wieczorek Law Firm, we pride ourselves on serving our clients with the utmost care and attention to detail. Whether you're facing felony charges or misdemeanor charges, we understand that a criminal conviction can have devastating long-term effects on your life.
                         </p>
                         
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                          {[
-                            "Criminal Defense",
-                            "DUI Defense",
-                            "Domestic Violence",
-                            "Drug Charges",
-                            "Probation Violations",
-                            "Expungements"
-                          ].map((service, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-lawyer-secondary" />
-                              <span className="text-gray-700">{service}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {/* Video Section - MOVED UP */}
+                        <div className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center overflow-hidden mt-4 mb-4">
+                          <div className="absolute inset-0 flex items-center justify-center flex-col space-y-3">
+                            <Video className="w-16 h-16 text-lawyer-primary opacity-70" />
+                            <span className="text-sm text-gray-600 font-medium">Attorney Introduction Video</span>
+                          </div>
+                        </div>
+                        
+                        {/* Specialty Areas - MOVED DOWN */}
+                        <div className="mt-4">
+                          <h4 className="text-lg font-semibold text-lawyer-dark mb-3">Areas of Practice:</h4>
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {[
+                              "Criminal Defense",
+                              "DUI Defense",
+                              "Domestic Violence",
+                              "Drug Charges",
+                              "Probation Violations",
+                              "Expungements"
+                            ].map((service, i) => (
+                              <li key={i} className="flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-lawyer-secondary" />
+                                <span className="text-gray-700">{service}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                       
                       <motion.button
@@ -306,18 +318,18 @@ const Index = () => {
                             <TabsContent value="video" className="space-y-4">
                               <h4 className="text-lg font-semibold text-lawyer-dark flex items-center gap-2">
                                 <Video className="w-5 h-5 text-lawyer-blue" /> 
-                                <span>Introduction Video</span>
+                                <span>Full Introduction Video</span>
                               </h4>
                               
                               <div className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center overflow-hidden">
                                 <div className="absolute inset-0 flex items-center justify-center flex-col space-y-3">
                                   <Video className="w-16 h-16 text-lawyer-primary opacity-70" />
-                                  <span className="text-sm text-gray-600 font-medium">Attorney Introduction Video</span>
+                                  <span className="text-sm text-gray-600 font-medium">Extended Attorney Introduction</span>
                                 </div>
                               </div>
                               
                               <p className="text-sm text-gray-600 italic text-center">
-                                Meet Attorney Wieczorek and learn about his approach to criminal defense cases.
+                                Watch the full video to learn more about Attorney Wieczorek's approach to criminal defense cases.
                               </p>
                             </TabsContent>
                           </Tabs>
